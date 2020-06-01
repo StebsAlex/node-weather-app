@@ -1,6 +1,9 @@
 const path = require("path");
 const express = require("express");
+
 const app = express();
+const port = process.env.PORT || 3000;
+
 const hbs = require("hbs");
 const geoCode = require("./utils/geocode");
 const foreCast = require("./utils/forecast");
@@ -69,10 +72,6 @@ app.get("/products", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("Server started at port 3000");
-});
-
 app.get("/about", (req, res) => {
   res.render("about", {
     title: "About page",
@@ -99,4 +98,8 @@ app.get("*", (req, res) => {
     name: "Stebin Alex",
     errorMessage: "my 404 page ",
   });
+});
+
+app.listen(port, () => {
+  console.log(`Server started at port ${port}`);
 });
